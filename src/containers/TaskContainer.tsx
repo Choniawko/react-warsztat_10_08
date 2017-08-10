@@ -2,9 +2,11 @@ import * as React from 'react';
 import { Task } from './Task';
 import { findById, toggleTask, updateTasks } from '../Helpers';
 import TaskList from '../components/TaskList/TaskList';
+import TaskForm from '../components/TaskForm/TaskForm';
 
 interface TaskContainerState {
     tasks: Task[];
+    currentTask: string;
 }
 
 class TaskContainer extends React.Component<{}, TaskContainerState> {
@@ -28,7 +30,8 @@ class TaskContainer extends React.Component<{}, TaskContainerState> {
                     name: 'Task #3',
                     done: false
                 },
-            ]
+            ],
+            currentTask: ''
         };
     }
 
@@ -42,10 +45,17 @@ class TaskContainer extends React.Component<{}, TaskContainerState> {
     });
   }
 
+  // tslint:disable-next-line:no-any
+  handleInput = (e: any) => {
+    this.setState({
+        currentTask: e.target.value
+    });
+  }
+
   render() {
     return (
         <div>
-            <input type="text" />
+            <TaskForm currentTask={this.state.currentTask} handleInput={this.handleInput} />
             <TaskList tasks={this.state.tasks} handleChange={this.handleChange} />
         </div>
     );
