@@ -2,6 +2,7 @@ import * as React from 'react';
 import './App.css';
 import Header from './components/Header';
 import { style } from 'typestyle';
+import TaskContainer from './containers/TaskContainer';
 
 export const intro = style({
   fontSize: 'large',
@@ -13,9 +14,7 @@ class App extends React.Component<{}, {}> {
     return (
       <div className="App">
         <Header />
-        <p className={intro}>
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <TaskContainer />
       </div>
     );
   }
