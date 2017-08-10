@@ -52,10 +52,21 @@ class TaskContainer extends React.Component<{}, TaskContainerState> {
     });
   }
 
+  handleSubmit = (e: any) => {
+    e.preventDefault();
+    // this.setState({
+    //     tasks: addTask(this.state.currentTask, this.state.tasks)
+    // })
+  }
+
   render() {
     return (
         <div>
-            <TaskForm currentTask={this.state.currentTask} handleInput={this.handleInput} />
+            <TaskForm 
+                currentTask={this.state.currentTask} 
+                handleInput={this.handleInput} 
+                handleSubmit={this.handleSubmit} 
+            />
             <TaskList tasks={this.state.tasks} handleChange={this.handleChange} />
         </div>
     );
