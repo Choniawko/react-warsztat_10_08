@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { arr, appLogo, AppHeader } from './HeaderStyle';
-const logo = require('../logo.svg');
+const logo = require('../../logo.svg');
 
 class Header extends React.Component<{}, {}> {
     render() {

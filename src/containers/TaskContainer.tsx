@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Task } from './Task';
 import { findById, toggleTask, updateTasks } from '../Helpers';
+import TaskList from '../components/TaskList/TaskList';
 
 interface TaskContainerState {
     tasks: Task[];
@@ -45,18 +46,7 @@ class TaskContainer extends React.Component<{}, TaskContainerState> {
     return (
         <div>
             <input type="text" />
-            <ul>
-                {this.state.tasks.map((task: Task) => (
-                    <li key={task.id}>{task.name}
-                    <span><input 
-                            type="checkbox" 
-                            checked={task.done} 
-                            onChange={() => this.handleChange(task.id)}
-                    />
-                    </span></li>
-                    
-                ))}
-            </ul>
+            <TaskList tasks={this.state.tasks} handleChange={this.handleChange} />
         </div>
     );
   }
