@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Task } from './Task';
-import { findById, toggleTask, updateTasks } from '../Helpers';
+import { findById, toggleTask, updateTasks, addTask } from '../Helpers';
 import TaskList from '../components/TaskList/TaskList';
 import TaskForm from '../components/TaskForm/TaskForm';
+import { getTasks } from './appService';
 
 interface TaskContainerState {
     tasks: Task[];
@@ -14,25 +15,18 @@ class TaskContainer extends React.Component<{}, TaskContainerState> {
     constructor() {
         super();
         this.state = {
-            tasks: [
-                {
-                    id: 1,
-                    name: 'Task #1',
-                    done: true
-                },
-                {
-                    id: 2,
-                    name: 'Task #2',
-                    done: false
-                },
-                {
-                    id: 3,
-                    name: 'Task #3',
-                    done: false
-                },
-            ],
+            tasks: [ ],
             currentTask: ''
         };
+    }
+
+    componentDidMount() {
+        getTasks()
+            .then((tasks: Task[]) => {
+                this.setState({
+                    tasks: tasks
+                });
+            });
     }
 
   handleChange = (id: number) => {
@@ -54,9 +48,12 @@ class TaskContainer extends React.Component<{}, TaskContainerState> {
 
   handleSubmit = (e: any) => {
     e.preventDefault();
-    // this.setState({
-    //     tasks: addTask(this.state.currentTask, this.state.tasks)
-    // })
+    this.setState({
+        tasks: addTask(this.state.currentTask, this.state.tasks)
+    });
+    this.setState({
+        currentTask: ''
+    });
   }
 
   render() {
