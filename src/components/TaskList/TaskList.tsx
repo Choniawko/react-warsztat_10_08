@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Task } from '../../containers/Task';
+import TaskItem from '../TaskItem/TaskItem';
 
 interface TaskListProps {
     tasks: Task[];
@@ -11,13 +12,7 @@ const TaskList = (props: TaskListProps) => {
     return (
         <ul>
                 {tasks.map((task: Task) => (
-                    <li key={task.id}>{task.name}
-                    <span><input 
-                            type="checkbox" 
-                            checked={task.done} 
-                            onChange={() => handleChange(task.id)}
-                    />
-                    </span></li>
+                    <TaskItem key={task.id} task={task} handleChange={handleChange}  />
                     
                 ))}
             </ul>
