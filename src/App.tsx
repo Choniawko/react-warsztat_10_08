@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './App.css';
-import Header from './Header';
+import Header from './components/Header';
 import { style } from 'typestyle';
 
 export const intro = style({
